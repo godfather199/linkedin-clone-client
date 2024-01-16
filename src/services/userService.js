@@ -131,3 +131,13 @@ export const remove_Saved_Post = async (postId) => {
 
   return data
 }
+
+
+
+export const fetch_All_Users_Service = async () => {
+  const {data} = await axios.get(
+    `/api/user/all-users`
+  )
+
+  return data
+}

@@ -106,6 +106,8 @@ function App() {
 export default App
 
 
+// Prod changes
+//  - Change backend_URL in .env
 
 
 

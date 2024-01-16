@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 function Posts({username}) {
   const dispatch = useDispatch()
 
+  const {currentUser} = useSelector(state => state.user)
   const {posts, isLoading} = useSelector(state => state.post)
   // console.log('Posts: ', posts)
 
@@ -24,7 +25,7 @@ function Posts({username}) {
       // console.log('Indide 3 ran')
       dispatch(thunk_Posts_Of_Following());
     }
-  }, [username]);
+  }, [username, currentUser]);
 
 
   return (
