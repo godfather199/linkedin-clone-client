@@ -94,3 +94,13 @@ export const fetch_Post_By_Id_Service = async (postId) => {
 
     return data
 }
+
+
+
+export const new_User_Posts_Service = async () => {
+    const {data} = await axios.get(
+        `/api/post/new-user-posts`
+    )
+
+    return data
+}

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { add_Comment_Service, createPostService, delete_Post_Service, edit_Post_Service, featured_Post_Service, fetch_Post_By_Id_Service, fetch_Post_By_Username_Service, like_Unlike_Post_Service, post_Of_Following_Service } from "../../services/postService"
+import { add_Comment_Service, createPostService, delete_Post_Service, edit_Post_Service, featured_Post_Service, fetch_Post_By_Id_Service, fetch_Post_By_Username_Service, like_Unlike_Post_Service, new_User_Posts_Service, post_Of_Following_Service } from "../../services/postService"
 import toast from "react-hot-toast"
 
 const initialState = {
@@ -34,6 +34,17 @@ export const thunk_Posts_Of_Following = createAsyncThunk(
             return thunkAPI.error.response.data.message
         }
     }
+)
+
+
+export const thunk_New_Users_Posts = createAsyncThunk(
+  'posts/new-user-posts', async (thunkAPI) => {
+    try {
+      return await new_User_Posts_Service()
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message)
+    }
+  }
 )
 
 
@@ -187,6 +198,16 @@ const postSlice = createSlice({
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
+            state.posts = posts;
+          })
+          .addCase(thunk_New_Users_Posts.pending, (state) => {
+            state.isLoading = true
+          })
+          .addCase(thunk_New_Users_Posts.fulfilled, (state, {payload}) => {
+            const {msg, posts} = payload
+
+            state.isLoading = false;
+            state.isSuccess = true;
             state.posts = posts;
           })
           .addCase(thunk_Like_Unlike_Post.fulfilled, (state, { payload }) => {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {LeftInfoTile, Navbar, CreatePost,NewsArticles, Posts} from '../../components'
 import {UserCapsules} from '../'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { set_Application_Entry_Type } from '../../store/slices/userSlice';
 
 
@@ -9,8 +9,8 @@ function Home() {
   const dispatch = useDispatch()
   // console.log('Inside Home')
 
-
-  useEffect(() => {
+  
+  useEffect(() => {    
     dispatch(set_Application_Entry_Type(''));
   }, []);
 
