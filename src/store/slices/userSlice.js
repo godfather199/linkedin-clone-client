@@ -9,7 +9,8 @@ const initialState = {
     currentUser: null,
     userDetails: {},
     savedPosts: [],
-    applicationEntryType: ''
+    applicationEntryType: '',
+    socketFlag: false
 }
 
 
@@ -211,6 +212,7 @@ export const userSlice = createSlice({
             state.isLoading = false
             state.isSuccess = true
             state.isError = false
+            state.socketFlag = true
 
             toast.success(msg, {
                 duration: 1500,
@@ -268,7 +270,7 @@ export const userSlice = createSlice({
             state.isSuccess = true
             state.currentUser = null
             state.userDetails = {}
-
+            state.socketFlag = false
 
             toast.success(msg, {
                 duration: 1500,

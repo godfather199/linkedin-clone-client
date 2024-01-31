@@ -11,6 +11,7 @@ export const notificationSlice = createSlice({
   initialState,
   reducers: {
     add_New_Notification: (state, { payload }) => {
+      console.log("notificationSlice 'add_New_Notification' ran")
       state.notifications = [...state.notifications, payload];
     },
     delete_Notification: (state, { payload }) => {

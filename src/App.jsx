@@ -54,7 +54,7 @@ axios.defaults.withCredentials = true
 
 
 function App() {
-  const {currentUser} = useSelector(state => state.user)
+  const {currentUser, socketFlag} = useSelector(state => state.user)
 
   const [user, setUser] = useState(null);
 
@@ -82,14 +82,16 @@ function App() {
 
   // Connect to 'socket-server'
   useEffect(() => {
-    socket = io(backend_URL);
-
-    socket?.emit("setup", currentUser);
-
-    socket?.on("connected", () => {
-      console.log("Connected to socket server");
-    });
-  }, []);
+    if(socketFlag) {
+      socket = io(backend_URL);
+  
+      socket?.emit("setup", currentUser);
+  
+      socket?.on("connected", () => {
+        console.log("Connected to socket server");
+      });
+    }
+  }, [socketFlag]);
 
 
 
@@ -109,6 +111,9 @@ export default App
 // Prod changes
 //  - Change backend_URL in .env
 
+// Sandeep => 65479c8aef800e23b9666fb3
+
+// Vimal => 6544686ad86ac6fc92843591
 
 
 // sm	640px	

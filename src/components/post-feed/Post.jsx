@@ -22,7 +22,7 @@ function Post({post}) {
   const { pathname } = useLocation();
   // console.log('Post: ', post)
   const { timeAgo } = useTime(post?.createdAt);
-  
+  // console.log("Post 'timgeAgo': ", timeAgo)
 
   // const {isSuccess} = useSelector(state => state.post)
   const { currentUser, isSuccess } = useSelector((state) => state.user);

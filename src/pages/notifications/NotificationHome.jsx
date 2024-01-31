@@ -18,6 +18,7 @@ export default function NotificationHome({
   const dispatch = useDispatch();
 
   const { notifications } = useSelector((state) => state.notification);
+  // console.log("NotificationHome: ", notifications)
   const { currentUser } = useSelector((state) => state.user);
 
   const open = Boolean(notificationMenu);
@@ -25,7 +26,7 @@ export default function NotificationHome({
   // Connect to 'socket-server'
   useEffect(() => {
     socket?.on("like_post_notification", (info) => {
-      // console.log("Like info from server: ", info);
+      console.log("NotificationHome 'like_post_notification' ", info);
       dispatch(add_New_Notification(info));
     });
 
